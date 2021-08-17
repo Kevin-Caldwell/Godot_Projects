@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Robot/Robot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Terrain/sample_terrain.tscn" type="PackedScene" id=2]
+
+[node name="World" type="Spatial"]
+
+[node name="Robot" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91558, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.53439, 4.59102, -7.05928 )
+visible = false
+
+[node name="sample_terrain" parent="." instance=ExtResource( 2 )]

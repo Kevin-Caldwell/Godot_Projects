@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Turret/Turret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Mechanical Legs/Mechanical_Legs.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Chasis/Chasis.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Robot/Robot.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.19226, 3.40938, 1.03329 )
+
+[node name="Robot" type="KinematicBody"]
+script = ExtResource( 4 )
+
+[node name="Chasis" parent="." instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="Turret" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 1.6238, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.955145, 0 )
+shape = SubResource( 1 )
+
+[node name="Mechanical_Legs" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.3, 0, -2.62268e-08, 0, 0.2, 0, 2.62268e-08, 0, -0.3, 0, -0.957856, 0 )
+
+[node name="Rotation_Helper" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Rotation_Helper"]
+transform = Transform( -1, -8.73898e-09, 8.69849e-08, 5.51978e-09, 0.986695, 0.162585, -8.72483e-08, 0.162585, -0.986695, 0, 3.14172, -6.84335 )
+current = true

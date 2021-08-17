@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Base_Chasis.obj-fd2bb4704fc80c43edb32de2dd98671e.mesh"
+
+[deps]
+
+files=[ "res://.import/Base_Chasis.obj-fd2bb4704fc80c43edb32de2dd98671e.mesh" ]
+
+source_file="res://Chasis/Base_Chasis.obj"
+dest_files=[ "res://.import/Base_Chasis.obj-fd2bb4704fc80c43edb32de2dd98671e.mesh", "res://.import/Base_Chasis.obj-fd2bb4704fc80c43edb32de2dd98671e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
