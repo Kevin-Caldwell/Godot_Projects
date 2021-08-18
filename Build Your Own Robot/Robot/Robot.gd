@@ -1,21 +1,32 @@
 extends KinematicBody
 
-const GRAVITY = -24.8
-const MAX_SPEED = 20
-const JUMP_SPEED = 18
+const id = "player"
+
+var turret_scene = preload("res://Robot/Turret/Turret.tscn")
+var mech_legs_scene = preload("res://Robot/Mechanical Legs/Mechanical_Legs.tscn")
+
+var health = 100
+
+const MAX_SPEED = 10
+const JUMP_SPEED = 9
+const MAX_SPRINT_SPEED = 15
 const ACCEL = 4.5
-const MAX_SPRINT_SPEED = 30
-const SPRINT_ACCEL = 18
+const DEACCEL= 8
+const SPRINT_ACCEL = 9
+const GRAVITY = -12.4
+
 var is_sprinting = false
 
 var dir = Vector3()
 var vel = Vector3()
 
-const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
 
 var camera
 var rotation_helper
+var turret
+var movement
+var movement_player
 
 var MOUSE_SENSITIVITY = 0.1
 
@@ -26,7 +37,21 @@ func _ready():
 	camera = $Rotation_Helper/Camera
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$Mechanical_Legs/AnimationPlayer.playback_speed = 4
+	#movement..playback_speed = 4
+	
+	
+	turret = turret_scene.instance()
+	add_child(turret)
+	turret.rotate_y(-PI/2)
+	turret.translate(Vector3(0, 1.624, 0))
+	
+	movement = mech_legs_scene.instance()
+	add_child(movement)
+	movement.rotate_y(PI)
+	movement.translate(Vector3(0, -0.958, 0))
+	
+	movement_player = movement.get_node("AnimationPlayer")
+	movement_player.playback_speed = 6
 	
 
 func process_input(delta):
@@ -76,7 +101,7 @@ func process_input(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
 		
-			# ----------------------------------
+	# ----------------------------------
 	# Changing weapons.
 	
 func process_movement(delta):
@@ -107,25 +132,28 @@ func process_movement(delta):
 	vel.x = hvel.x
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
-	if $Mechanical_Legs/AnimationPlayer.is_playing():
+
+	if movement_player.is_playing():
 		if vel.x == 0:
-			$Mechanical_Legs/AnimationPlayer.stop()
-	if !$Mechanical_Legs/AnimationPlayer.is_playing():
+			movement_player.stop()
+	if !movement_player.is_playing():
 		if vel.x > 0:
-			$Mechanical_Legs/AnimationPlayer.play("Walk")
+			movement_player.play("Walk")
 		if vel.x < 0:
-			$Mechanical_Legs/AnimationPlayer.play_backwards("Walk")
-			
-	
+			movement_player.play_backwards("Walk")
 
 func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
-		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
-
-		var camera_rot = rotation_helper.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -70, 70)
-		rotation_helper.rotation_degrees = camera_rot
+	if event is InputEventMouseMotion:
+		
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
+			self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+			
+			var camera_rot = rotation_helper.rotation_degrees
+			camera_rot.x = clamp(camera_rot.x, -70, 70)
+			rotation_helper.rotation_degrees = camera_rot
+		#else:
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	process_input(delta)

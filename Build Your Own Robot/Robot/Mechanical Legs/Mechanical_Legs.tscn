@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Robot/Mechanical Legs/Mechanical_Legs.dae" type="PackedScene" id=1]
+[ext_resource path="res://Robot/Mechanical Legs/Mechanical_Legs.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Walk"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("L_Knee:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, 0 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, -2.91651 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, 0 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, 0.882919 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("L_Foot:transform")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( -3.30012e-15, 1, -1.19209e-07, -1, 1.91069e-15, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, -0.265123, -16.3014, 0 ), Transform( -3.30012e-15, 1, -1.19209e-07, -1, 1.91069e-15, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, -0.265123, -15.8614, -3.47844 ), Transform( 0, 1, 0, -1, 0, 0, 0, 0, 1, -0.265, -16.301, 0.484 ), Transform( 0, 1, 0, -1, 0, 0, 0, 0, 1, -0.265, -15.861, 3.478 ), Transform( 0, 1, 0, -1, 0, 0, 0, 0, 1, -0.265, -16.301, 0.484 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("L_Calves:transform")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, -0.387157, -8.27376, 0 ), Transform( 0, 1, -5.96046e-08, -0.136234, 7.08768e-08, 0.990677, 0.990677, 4.5628e-08, 0.136234, -0.387157, -7.78144, -2.76946 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, -0.387157, -8.27376, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 0.277851, 6.29674e-08, 0.960624, 0.960624, 6.03798e-08, -0.277851, -0.387157, -8.14763, 0.81985 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, -0.387157, -8.27376, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("R_Foot:transform")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( -3.30012e-15, 1, -1.19209e-07, -1, 1.91069e-15, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, 3.92342, -16.3014, 0 ), Transform( -3.30012e-15, 1, -1.19209e-07, -1, 1.91069e-15, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, 3.923, -16.301, 3.478 ), Transform( -3.30012e-15, 1, -1.19209e-07, -1, 1.91069e-15, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, 3.92342, -16.3014, 0 ), Transform( 0, 1, 0, -1, 0, 0, 0, 0, 1, 3.923, -16.301, -3.478 ), Transform( -3.30012e-15, 1, -1.19209e-07, -1, 1.91069e-15, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, 3.92342, -16.3014, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("R_Calves:transform")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, 3.92342, -8.27376, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 0.347361, 6.72146e-08, 0.937731, 0.937731, 5.56131e-08, -0.347361, 3.92342, -8.69558, 0.270473 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, 3.92342, -8.27376, 0 ), Transform( 0, 1, 0, -0.108512, 0, 0.994222, 0.994222, 0, 0.108512, 3.923, -8.2788, -2.99448 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, 3.92342, -8.27376, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("R_Knee:transform")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -7.94469, 0 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -8.28528, 0.325886 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -7.94469, 0 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -7.99104, -3.01308 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -7.94469, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("R_Thigh:transform")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, 3.92342, 0, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 0.0302769, 4.59772e-08, 0.999542, 0.999542, 7.41398e-08, -0.0302769, 3.92342, 0, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, 3.92342, 0, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, -0.323686, 1.69205e-08, 0.946164, 0.946164, 8.55822e-08, 0.323686, 3.92342, 0, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, 3.92342, 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("L_Thigh:transform")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, -0.277325, 0, 0 ), Transform( -1.19209e-07, 1, 0, -0.330284, -2.62625e-08, 0.943882, 0.943882, 1.1628e-07, 0.330284, -0.277325, 0, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, -0.277325, 0, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 0.102636, 5.12294e-08, 0.994719, 0.994719, 7.06128e-08, -0.102636, -0.277325, 0, 0 ), Transform( -7.54979e-08, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 1, 7.54979e-08, -8.74228e-08, -0.277325, 0, 0 ) ]
+}
+
+[node name="Mechanical_Legs" instance=ExtResource( 1 )]
+transform = Transform( 0.3, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="L_Knee" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, -1.45826 )
+
+[node name="L_Foot" parent="." index="1"]
+transform = Transform( 0, 1, -1.19209e-07, -1, 0, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, -0.265123, -16.0814, -1.73922 )
+
+[node name="L_Calves" parent="." index="2"]
+transform = Transform( -2.38419e-07, 1, -2.98023e-08, -0.0682762, 0, 0.997667, 0.997667, 1.19209e-07, 0.0682762, -0.387157, -8.0276, -1.38473 )
+
+[node name="R_Foot" parent="." index="3"]
+transform = Transform( 0, 1, -1.19209e-07, -1, 0, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, 3.92321, -16.3012, 1.739 )
+
+[node name="R_Calves" parent="." index="4"]
+transform = Transform( 0, 1, -5.96046e-08, 0.176449, 1.19209e-07, 0.984309, 0.984309, 5.96046e-08, -0.176449, 3.92342, -8.48467, 0.135237 )
+
+[node name="R_Knee" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -8.11499, 0.162943 )
+
+[node name="R_Thigh" parent="." index="6"]
+transform = Transform( -1.19209e-07, 1, 0, 0.0151402, -1.19209e-07, 0.999886, 0.999886, 0, -0.0151403, 3.92342, 0, 0 )
+
+[node name="L_Thigh" parent="." index="7"]
+transform = Transform( -1.19209e-07, 1, 0, -0.167509, 0, 0.985871, 0.985871, 1.19209e-07, 0.167509, -0.277325, 0, 0 )
+
+[node name="AnimationPlayer" parent="." index="9"]
+anims/Walk = SubResource( 1 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
