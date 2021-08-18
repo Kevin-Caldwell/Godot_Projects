@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Robot/Mechanical Legs/Mechanical_Legs.dae" type="PackedScene" id=1]
 [ext_resource path="res://Robot/Mechanical Legs/Mechanical_Legs.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Walk"
+resource_name = "Death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Transform( 0.3, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 0, 0 ), Transform( 0.281777, 0.0599912, -0.0500415, -0.0909056, 0.0993, -0.244029, -0.0483523, 0.162913, 0.16717, 2.05073, -2.78366, -1.43822 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("L_Knee:transform")
@@ -108,30 +123,31 @@ transform = Transform( 0.3, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="L_Knee" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, -1.45826 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3807, -7.94469, -1.13744 )
 
 [node name="L_Foot" parent="." index="1"]
-transform = Transform( 0, 1, -1.19209e-07, -1, 0, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, -0.265123, -16.0814, -1.73922 )
+transform = Transform( 0, 1, -1.19209e-07, -1, 0, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, -0.265123, -16.1298, -1.35659 )
 
 [node name="L_Calves" parent="." index="2"]
-transform = Transform( -2.38419e-07, 1, -2.98023e-08, -0.0682762, 0, 0.997667, 0.997667, 1.19209e-07, 0.0682762, -0.387157, -8.0276, -1.38473 )
+transform = Transform( 0, 1, -2.98023e-08, -0.0532717, 0, 0.99858, 0.99858, 2.98023e-08, 0.0532717, -0.387157, -8.08175, -1.08009 )
 
 [node name="R_Foot" parent="." index="3"]
-transform = Transform( 0, 1, -1.19209e-07, -1, 0, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, 3.92321, -16.3012, 1.739 )
+transform = Transform( 0, 1, -1.19209e-07, -1, 0, 4.37114e-08, 4.37114e-08, 1.19209e-07, 1, 3.92326, -16.3012, 1.35642 )
 
 [node name="R_Calves" parent="." index="4"]
-transform = Transform( 0, 1, -5.96046e-08, 0.176449, 1.19209e-07, 0.984309, 0.984309, 5.96046e-08, -0.176449, 3.92342, -8.48467, 0.135237 )
+transform = Transform( -1.19209e-07, 1, -8.9407e-08, 0.137914, 1.19209e-07, 0.990444, 0.990444, 8.9407e-08, -0.137914, 3.92342, -8.43827, 0.105484 )
 
 [node name="R_Knee" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -8.11499, 0.162943 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90448, -8.07752, 0.127096 )
 
 [node name="R_Thigh" parent="." index="6"]
-transform = Transform( -1.19209e-07, 1, 0, 0.0151402, -1.19209e-07, 0.999886, 0.999886, 0, -0.0151403, 3.92342, 0, 0 )
+transform = Transform( -2.38419e-07, 1, -5.96047e-08, 0.0118096, 5.96046e-08, 0.999931, 0.999931, 1.78814e-07, -0.0118096, 3.92342, 0, 0 )
 
 [node name="L_Thigh" parent="." index="7"]
-transform = Transform( -1.19209e-07, 1, 0, -0.167509, 0, 0.985871, 0.985871, 1.19209e-07, 0.167509, -0.277325, 0, 0 )
+transform = Transform( -1.19209e-07, 1, -5.96047e-08, -0.130899, 0, 0.991396, 0.991396, 5.96046e-08, 0.130899, -0.277325, 0, 0 )
 
 [node name="AnimationPlayer" parent="." index="9"]
-anims/Walk = SubResource( 1 )
+anims/Death = SubResource( 1 )
+anims/Walk = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

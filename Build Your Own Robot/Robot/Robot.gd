@@ -7,15 +7,16 @@ var mech_legs_scene = preload("res://Robot/Mechanical Legs/Mechanical_Legs.tscn"
 
 var health = 100
 
-const MAX_SPEED = 10
+const MAX_SPEED = 7
 const JUMP_SPEED = 9
-const MAX_SPRINT_SPEED = 15
+const MAX_SPRINT_SPEED = 10
 const ACCEL = 4.5
 const DEACCEL= 8
 const SPRINT_ACCEL = 9
 const GRAVITY = -12.4
 
 var is_sprinting = false
+var is_dead = false
 
 var dir = Vector3()
 var vel = Vector3()
@@ -37,6 +38,7 @@ func _ready():
 	camera = $Rotation_Helper/Camera
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	#movement..playback_speed = 4
 	
 	
@@ -53,6 +55,9 @@ func _ready():
 	movement_player = movement.get_node("AnimationPlayer")
 	movement_player.playback_speed = 6
 	
+	$AnimationPlayer.seek(0)
+	turret.get_node("AnimationPlayer").seek(0)
+	movement.get_node("AnimationPlayer").seek(0)
 
 func process_input(delta):
 	dir = Vector3()
@@ -156,5 +161,14 @@ func _input(event):
 			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-	process_input(delta)
-	process_movement(delta)
+	if !is_dead:
+		process_input(delta)
+		process_movement(delta)
+
+func _process(delta):
+	if health <= 0 and !is_dead:
+		$AnimationPlayer.play("Death")
+		turret.get_node("AnimationPlayer").play("Death")
+		movement.get_node("AnimationPlayer").play("Death")
+		is_dead = true
+		

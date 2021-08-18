@@ -1,7 +1,38 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Robot/Turret/Turret.gd" type="Script" id=1]
 [ext_resource path="res://Robot/Turret/Default_Turret.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Textures/pngwing.com.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_use_shadow_to_opacity = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+angular_velocity_random = 0.46
+
+[sub_resource type="QuadMesh" id=3]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Default_Turret:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 ), Transform( 0.672049, 0.30346, 0.136974, -0.1933, 0.606856, -0.396057, -0.271082, 0.31959, 0.621994, 0, -2.81412, -1.57332 ) ]
+}
 
 [node name="Turret" type="Spatial"]
 script = ExtResource( 1 )
@@ -19,3 +50,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18077, 0, 0 )
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( -3.0598e-08, -1.51, 0, 0.7, -6.60042e-08, 0, 0, 0, 0.7, 5.84371, 0.0729255, -0.0312539 )
+material_override = SubResource( 1 )
+emitting = false
+lifetime = 0.53
+one_shot = true
+speed_scale = 3.78
+explosiveness = 1.0
+visibility_aabb = AABB( -0.586145, -1.50392, -0.173997, 1.26116, 2.04105, 0.347994 )
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 4 )
