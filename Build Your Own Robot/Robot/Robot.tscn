@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Robot/Chasis/Chasis.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Robot/Robot.gd" type="Script" id=4]
@@ -21,6 +21,10 @@ tracks/0/keys = {
 "values": [ Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 ), Transform( -0.945845, -0.167663, -0.277969, -0.174542, 0.98465, -1.52589e-08, 0.273702, 0.0485172, -0.96059, -3.71585, -2.99462, 0 ) ]
 }
 
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.539709
+height = 6.54619
+
 [node name="Robot" type="KinematicBody"]
 collision_layer = 3
 script = ExtResource( 4 )
@@ -39,3 +43,12 @@ transform = Transform( -1, 0, -8.74228e-08, -1.67889e-08, 0.981387, 0.192042, 8.
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 2 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 3.4603, -6.8607 )
+light_energy = 1.29
+omni_range = 11.67
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67951, 2.95642 )
+shape = SubResource( 3 )

@@ -18,11 +18,15 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("fire") && ammo > 0:
 		if $"Reload Timer".is_stopped():
-			$Particles.emitting = true
-			var new_bullet = bullet.instance()
-			var scene_root = get_tree().root.get_children()[0]
-			scene_root.add_child(new_bullet)
-			new_bullet.global_transform = $AimPoint.global_transform
-			ammo -= 1
-			
+			fire()
 			$"Reload Timer".start()
+
+
+func fire():
+		$Particles.emitting = true
+		var new_bullet = bullet.instance()
+		var scene_root = get_tree().root.get_children()[0]
+		scene_root.add_child(new_bullet)
+		new_bullet.global_transform = $AimPoint.global_transform
+		ammo -= 1
+	

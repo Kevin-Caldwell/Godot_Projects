@@ -148,7 +148,7 @@ func process_movement(delta):
 			movement_player.play_backwards("Walk")
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and !is_dead:
 		
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
