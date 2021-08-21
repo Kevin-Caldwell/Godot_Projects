@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Robot/Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Terrain/sample_terrain.tscn" type="PackedScene" id=2]
@@ -6,98 +6,15 @@
 [ext_resource path="res://Sample Enemy/sample_enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Terrain/Tree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Terrain/house.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Textures/progressbar.png" type="Texture" id=7]
-[ext_resource path="res://Textures/font.tres" type="DynamicFont" id=8]
-[ext_resource path="res://Textures/reloadbar.png" type="Texture" id=9]
-[ext_resource path="res://Textures/HealthBar.png" type="Texture" id=10]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 3 )
 Mob = ExtResource( 4 )
 
 [node name="Robot" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91558, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91558, -43.311 )
 
 [node name="sample_terrain" parent="." instance=ExtResource( 2 )]
-
-[node name="GUI" type="Control" parent="."]
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Health" type="Label" parent="GUI"]
-margin_left = 7.0
-margin_top = 556.0
-margin_right = 77.0
-margin_bottom = 595.0
-custom_fonts/font = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AmmoLeft" type="Label" parent="GUI"]
-margin_left = 989.0
-margin_top = 566.0
-margin_right = 1032.0
-margin_bottom = 605.0
-custom_fonts/font = ExtResource( 8 )
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OutOfAmmo" type="Label" parent="GUI"]
-margin_left = 421.491
-margin_top = 479.303
-margin_right = 584.577
-margin_bottom = 518.303
-custom_fonts/font = ExtResource( 8 )
-custom_colors/font_color = Color( 0.721569, 0.101961, 0.101961, 1 )
-text = "Out of Ammo"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AmmoProgress" type="TextureProgress" parent="GUI"]
-margin_left = 957.873
-margin_top = 536.0
-margin_right = 1067.87
-margin_bottom = 646.0
-rect_scale = Vector2( 1.2, 1.2 )
-texture_progress = ExtResource( 7 )
-fill_mode = 5
-radial_fill_degrees = 90.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ReloadBar" type="TextureProgress" parent="GUI"]
-margin_left = 935.469
-margin_top = 514.245
-margin_right = 1133.47
-margin_bottom = 710.245
-rect_scale = Vector2( 0.9, 0.9 )
-texture_progress = ExtResource( 9 )
-fill_mode = 5
-radial_fill_degrees = 90.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthBar" type="TextureProgress" parent="GUI"]
-margin_left = -128.289
-margin_top = 470.395
-margin_right = 132.711
-margin_bottom = 728.395
-texture_progress = ExtResource( 10 )
-fill_mode = 4
-radial_fill_degrees = 90.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Trees" type="Spatial" parent="."]
 
@@ -126,3 +43,11 @@ transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.50054, 20.2593 )
 
 [node name="house2" parent="Houses" instance=ExtResource( 6 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.5, 32.575 )
+
+[node name="house3" parent="Houses" instance=ExtResource( 6 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 20.2202, 1.93618, 32.5367 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30.759, 13.8397 )
+light_indirect_energy = 0.0
+shadow_color = Color( 0.454902, 0.223529, 0.223529, 1 )

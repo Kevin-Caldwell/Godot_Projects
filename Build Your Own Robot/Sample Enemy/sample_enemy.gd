@@ -13,13 +13,17 @@ func _physics_process(delta):
 		var r = get_parent().get_node("Robot").get_global_transform().origin
 		look_at(r, Vector3(0, 1, 0))
 		rotation.x = 0
-		#rotation.y = -PI/2
-		var vel = get_global_transform().origin.direction_to(r)
-		#print(get_global_transform().origin.distance_to(r))
+
+		var vel = get_global_transform().origin.direction_to(r).normalized()
+		vel.y = -1
+
 		if get_global_transform().origin.distance_to(r) < 6:
 			attack()
 		
-		var collision = move_and_collide(vel.normalized()/25)
+		var collision = move_and_collide(vel.normalized())
+		
+		if get_global_transform().origin.y < -20:
+			kill()
 	
 
 func bullet_hit(damage):

@@ -213,40 +213,41 @@ anims/Attack = SubResource( 1 )
 anims/Death = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.33879, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.33879, 0 )
 shape = SubResource( 3 )
 
 [node name="LEG" type="MeshInstance" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Feet" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.121775, 0, 0, 0, 1, 0, -0.917388, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 0.121775, 0, -1, 0, -4.37114e-08, 0, -0.917388, 0 )
 mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Left Arm" type="MeshInstance" parent="."]
-transform = Transform( 0.388896, 0, 0, 0, 0.827893, 0, 0, 0, 0.388896, 0, 1.12512, -1.39863 )
+transform = Transform( 0.0056674, 0, 0.388855, 0, 0.827893, 0, -0.388855, 0, 0.0056674, -1.42347, 1.12512, 0.00424352 )
 mesh = SubResource( 6 )
 material/0 = null
 
 [node name="Right arm" type="MeshInstance" parent="."]
-transform = Transform( 0.388896, 0, 0, 0, 0.827893, 0, 0, 0, 0.388896, 0, 1.12512, 1.44861 )
+transform = Transform( 0.0056674, 0, 0.388855, 0, 0.827893, 0, -0.388855, 0, 0.0056674, 1.42347, 1.12512, 0.0457364 )
 mesh = SubResource( 7 )
 material/0 = null
 
 [node name="Shoulder" type="MeshInstance" parent="."]
-transform = Transform( 0.648159, 0, 0, 0, 0.648159, 0, 0, 0, 1.91985, 0, 2.42178, 0 )
+transform = Transform( -2.83319e-08, 0, 1.91985, 0, 0.648159, 0, -0.648159, 0, -8.39193e-08, 0, 2.42178, 0 )
 mesh = SubResource( 8 )
 material/0 = null
 
 [node name="Torso" type="MeshInstance" parent="."]
-transform = Transform( 0.591054, 0, 0, 0, 2.41863, 0, 0, 0, 0.591054, 0, 1.51222, 0 )
+transform = Transform( -2.58358e-08, 0, 0.591054, 0, 2.41863, 0, -0.591054, 0, -2.58358e-08, 0, 1.51222, 0 )
 mesh = SubResource( 9 )
 material/0 = null
 
 [node name="Head" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.77208, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.77208, 0 )
 mesh = SubResource( 10 )
 material/0 = null
 
