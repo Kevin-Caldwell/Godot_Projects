@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Textures/reloadbar.png" type="Texture" id=1]
 [ext_resource path="res://Textures/HealthBar.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Robot/Robot.gd" type="Script" id=4]
 [ext_resource path="res://Textures/progressbar.png" type="Texture" id=5]
 [ext_resource path="res://Textures/font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Textures/Crosshair.png" type="Texture" id=7]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.19226, 3.40938, 1.03329 )
@@ -46,17 +47,8 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 [node name="BehindView" type="Camera" parent="Rotation_Helper"]
 transform = Transform( 1, 0, 0, 0, 0.981387, 0.192042, 0, -0.192042, 0.981387, 0, 3.46, 6.861 )
 
-[node name="MoveableView" type="Camera" parent="Rotation_Helper"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.63346, 0 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 2 )
-
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 3.4603, -6.8607 )
-visible = false
-light_energy = 1.29
-omni_range = 11.67
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67951, 2.95642 )
@@ -66,8 +58,8 @@ shape = SubResource( 3 )
 wait_time = 5.0
 
 [node name="RobotView" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.66375, 6.38239 )
-fov = 60.0
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.66375, 6.88427 )
+fov = 30.0
 
 [node name="GUI" type="Control" parent="."]
 __meta__ = {
@@ -97,10 +89,10 @@ __meta__ = {
 }
 
 [node name="OutOfAmmo" type="Label" parent="GUI"]
-margin_left = 421.491
-margin_top = 479.303
-margin_right = 584.577
-margin_bottom = 518.303
+margin_left = 431.582
+margin_top = 480.985
+margin_right = 594.668
+margin_bottom = 519.985
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color = Color( 0.721569, 0.101961, 0.101961, 1 )
 text = "Out of Ammo"
@@ -144,6 +136,17 @@ margin_bottom = 728.395
 texture_progress = ExtResource( 2 )
 fill_mode = 4
 radial_fill_degrees = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crosshair" type="TextureRect" parent="GUI"]
+margin_left = 401.818
+margin_top = 245.0
+margin_right = 1153.82
+margin_bottom = 660.363
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

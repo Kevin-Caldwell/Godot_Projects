@@ -11,11 +11,9 @@ const MAX_AMMO = 15
 func _ready():
 	$"Reload Timer".wait_time = RELOAD_TIME
 	ammo = MAX_AMMO
-	#$Particles.emitting = true
 
 func _process(delta):
 	timeLeft = $"Reload Timer".time_left
-	print($Particles.emitting)
 
 func _input(event):
 	if event.is_action_pressed("fire") && ammo != 0:
@@ -31,4 +29,3 @@ func fire():
 		scene_root.add_child(new_bullet)
 		new_bullet.global_transform = $AimPoint.global_transform
 		ammo -= 1
-	

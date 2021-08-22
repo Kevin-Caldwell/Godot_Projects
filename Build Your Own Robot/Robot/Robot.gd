@@ -64,7 +64,6 @@ func _ready():
 	
 	cameras.append($Rotation_Helper/BehindView)
 	cameras.append($RobotView)
-	cameras.append($Rotation_Helper/MoveableView)
 	
 	cam_select()
 
@@ -195,6 +194,9 @@ func _process(delta):
 		$GUI/OutOfAmmo.visible = true
 	else:
 		$GUI/OutOfAmmo.visible = false
+		
+	#print(rotation_helper.rotation.x)
+		
 
 func die():
 	$AnimationPlayer.play("Death")
@@ -211,7 +213,9 @@ func _on_RegenTimer_timeout():
 
 func cam_select():
 	curr_cam += 1
-	if curr_cam == 3:
+	if curr_cam == cameras.size():
 		curr_cam = 0
 	camera = cameras[curr_cam]
 	camera.current = true
+	$GUI/Crosshair.visible = !$GUI/Crosshair.visible
+	rotation_helper.rotation.x = -0.228638

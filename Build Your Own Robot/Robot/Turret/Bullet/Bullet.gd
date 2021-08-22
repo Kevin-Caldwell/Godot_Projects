@@ -2,7 +2,7 @@ extends Spatial
 
 const id = "bullet"
 
-var BULLET_SPEED = 140
+var BULLET_SPEED = 150
 var BULLET_DAMAGE = 15
 
 const KILL_TIMER = 4
