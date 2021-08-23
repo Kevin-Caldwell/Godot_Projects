@@ -4,27 +4,54 @@ const id = "sample enemy"
 
 var health = 20
 var damage = 5
+var vel = Vector3()
+var lock = false
+
+var isInProximity
+
+var target
+var sight = 20
+var dirTimer = 0
 
 func _ready():
-	$AnimationPlayer.playback_speed=5
+	$AnimationPlayer.playback_speed=3
+	isInProximity = false
+	target = get_parent().get_node("Robot")
+	vel = Vector3(1, 0, 0)
+	
 
 func _physics_process(delta):
-	if !get_parent().robot.is_dead:
-		var r = get_parent().get_node("Robot").get_global_transform().origin
-		look_at(r, Vector3(0, 1, 0))
-		rotation.x = 0
-
-		var vel = get_global_transform().origin.direction_to(r).normalized()
-		vel.y = -1
-
-		if get_global_transform().origin.distance_to(r) < 6:
-			attack()
+	if !target.is_dead:
+		if lock:
+			target()
+		else:
+			roam()
 		
-		var collision = move_and_collide(vel.normalized())
+		var collision = move_and_collide(vel)
+		dirTimer -= delta
+		
+		if get_global_transform().origin.distance_to(target.get_global_transform().origin) < sight:
+				lock = true
 		
 		if get_global_transform().origin.y < -20:
 			kill()
-	
+		
+		if isInProximity:
+			attack()
+
+func roam():
+	if dirTimer <= 0:
+			var angle = rand_range(-PI/2, PI/2)
+			rotate_y(angle)
+			dirTimer = rand_range(1, 10)
+			vel = vel.rotated(Vector3(0, 1, 0), angle)
+			vel.y -= 1
+
+func target():
+	look_at(target.get_global_transform().origin, Vector3(0, 1, 0))
+	rotation.x = 0
+	vel = get_global_transform().origin.direction_to(target.get_global_transform().origin).normalized()
+	vel.y -= 1
 
 func bullet_hit(damage):
 	health -= damage
@@ -36,11 +63,26 @@ func kill():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Death":
+		if !$AnimationPlayer.is_playing():
+			$AnimationPlayer.stop()
 		queue_free()
 
 
 func attack():
 	if $AttackTimer.is_stopped():
 		get_parent().get_node("Robot").health -= damage
+		$AnimationPlayer.playback_speed=5
 		$AnimationPlayer.play("Attack")
+		$AnimationPlayer.playback_speed=3
 		$AttackTimer.start()
+	
+
+
+func _on_Area_body_entered(body):
+	if body.id == "player":
+		isInProximity = true
+
+
+func _on_Area_body_exited(body):
+	if body.id == "player":
+		isInProximity = false

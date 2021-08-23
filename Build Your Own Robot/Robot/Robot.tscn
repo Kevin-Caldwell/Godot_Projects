@@ -11,8 +11,11 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.19226, 3.40938, 1.03329 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Death"
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.456387
+height = 6.3613
+
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Chasis:transform")
 tracks/0/interp = 1
@@ -26,20 +29,24 @@ tracks/0/keys = {
 "values": [ Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 ), Transform( -0.945845, -0.167663, -0.277969, -0.174542, 0.98465, -1.52589e-08, 0.273702, 0.0485172, -0.96059, -3.71585, -2.99462, 0 ) ]
 }
 
-[sub_resource type="CapsuleShape" id=3]
-radius = 0.456387
-height = 6.3613
-
 [node name="Robot" type="KinematicBody"]
-collision_layer = 3
+collision_layer = 2
 script = ExtResource( 4 )
 
 [node name="Chasis" parent="." instance=ExtResource( 3 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="BodyCollision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.955145, 0 )
 shape = SubResource( 1 )
+
+[node name="TurretCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67951, 2.95642 )
+shape = SubResource( 2 )
+
+[node name="RobotView" type="Camera" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.66375, 6.88427 )
+fov = 30.0
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
@@ -48,18 +55,10 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 transform = Transform( 1, 0, 0, 0, 0.981387, 0.192042, 0, -0.192042, 0.981387, 0, 3.46, 6.861 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 2 )
-
-[node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67951, 2.95642 )
-shape = SubResource( 3 )
+anims/Death = SubResource( 3 )
 
 [node name="RegenTimer" type="Timer" parent="."]
 wait_time = 5.0
-
-[node name="RobotView" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.66375, 6.88427 )
-fov = 30.0
 
 [node name="GUI" type="Control" parent="."]
 __meta__ = {

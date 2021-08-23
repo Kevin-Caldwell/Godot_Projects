@@ -5,7 +5,7 @@ const id = "bullet"
 var BULLET_SPEED = 150
 var BULLET_DAMAGE = 15
 
-const KILL_TIMER = 4
+const KILL_TIMER = 1
 var timer = 0
 
 var hit_something = false
@@ -27,6 +27,8 @@ func collided(body):
 	if hit_something == false:
 		if body.has_method("bullet_hit"):
 			body.bullet_hit(BULLET_DAMAGE)
-
-	hit_something = true
-	queue_free()
+	if body.id == "player":
+		pass
+	else:
+		hit_something = true
+		queue_free()

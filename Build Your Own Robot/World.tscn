@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Robot/Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Terrain/sample_terrain.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Sample Enemy/sample_enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Terrain/Tree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Terrain/house.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Tree.gd" type="Script" id=7]
+[ext_resource path="res://House.gd" type="Script" id=8]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 3 )
@@ -20,35 +22,47 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91558, -43.311 )
 
 [node name="Tree5" parent="Trees" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2395, 0, -0.26619 )
+script = ExtResource( 7 )
 
 [node name="Tree" parent="Trees" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0 )
+script = ExtResource( 7 )
 
 [node name="Tree6" parent="Trees" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.8381, 0, 5.90145 )
+script = ExtResource( 7 )
 
 [node name="Tree3" parent="Trees" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2815, 0, -31.6905 )
+script = ExtResource( 7 )
 
 [node name="Tree2" parent="Trees" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1528, 0, -15.8453 )
+script = ExtResource( 7 )
 
 [node name="Tree4" parent="Trees" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2605, 0, 8.32486 )
+script = ExtResource( 7 )
 
 [node name="Houses" type="Spatial" parent="."]
 
 [node name="house" parent="Houses" instance=ExtResource( 6 )]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.50054, 20.2593 )
+transform = Transform( 4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, 2.50054, 20.2593 )
+script = ExtResource( 8 )
 
 [node name="house2" parent="Houses" instance=ExtResource( 6 )]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.5, 32.575 )
+transform = Transform( 4.2, 0, 0, 0, 4.2, 0, 0, 0, 4.2, 0, 2.5, 32.575 )
+script = ExtResource( 8 )
 
 [node name="house3" parent="Houses" instance=ExtResource( 6 )]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 20.2202, 1.93618, 32.5367 )
+script = ExtResource( 8 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30.759, 13.8397 )
-visible = false
+light_energy = 0.3
 light_indirect_energy = 0.0
-shadow_color = Color( 0.454902, 0.223529, 0.223529, 1 )
+light_bake_mode = 0
+light_cull_mask = 4294967293
+directional_shadow_mode = 0
+directional_shadow_depth_range = 1

@@ -11,16 +11,25 @@ const MAX_AMMO = 15
 func _ready():
 	$"Reload Timer".wait_time = RELOAD_TIME
 	ammo = MAX_AMMO
+	$Particles.emitting = true
 
 func _process(delta):
 	timeLeft = $"Reload Timer".time_left
 
 func _input(event):
-	if event.is_action_pressed("fire") && ammo != 0:
-		if $"Reload Timer".is_stopped():
-			$Particles.emitting = true
-			fire()
-			$"Reload Timer".start()
+	if event.is_action_pressed("fire"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			if ammo != 0:
+				if $"Reload Timer".is_stopped():
+					$Particles.emitting = true
+					fire()
+					$"Reload Timer".start()
+				else:
+					pass
+			else:
+				pass
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func fire():

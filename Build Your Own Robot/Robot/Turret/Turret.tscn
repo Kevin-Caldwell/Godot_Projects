@@ -4,7 +4,7 @@
 [ext_resource path="res://Robot/Turret/turret_mesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/pngwing.com.png" type="Texture" id=3]
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=1]
 flags_use_shadow_to_opacity = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
@@ -14,9 +14,9 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=2]
 
-[sub_resource type="QuadMesh" id=7]
+[sub_resource type="QuadMesh" id=3]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Death"
@@ -34,7 +34,8 @@ autostart = true
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( -3.0598e-08, -1.51, 0, 0.7, -6.60042e-08, 0, 0, 0, 0.7, 6.59756, -0.0534969, -0.0312539 )
-material_override = SubResource( 6 )
+layers = 2
+material_override = SubResource( 1 )
 emitting = false
 lifetime = 0.5
 one_shot = true
@@ -43,8 +44,8 @@ explosiveness = 1.0
 randomness = 0.62
 fract_delta = false
 visibility_aabb = AABB( -0.586145, -1.50392, -0.479794, 1.26116, 2.04105, 0.959588 )
-process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 7 )
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 4 )
