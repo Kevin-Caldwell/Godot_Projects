@@ -2,7 +2,7 @@ extends Spatial
 
 export (PackedScene) var Mob
 
-var MOB_COUNT = 5
+var MOB_COUNT = 0
 var mobs = []
 var robot
 

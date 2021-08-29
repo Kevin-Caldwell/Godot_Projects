@@ -10,7 +10,7 @@ var lock = false
 var isInProximity
 
 var target
-var sight = 20
+var sight = 40
 var dirTimer = 0
 
 func _ready():
@@ -43,7 +43,7 @@ func roam():
 	if dirTimer <= 0:
 			var angle = rand_range(-PI/2, PI/2)
 			rotate_y(angle)
-			dirTimer = rand_range(1, 10)
+			dirTimer = rand_range(5, 15)
 			vel = vel.rotated(Vector3(0, 1, 0), angle)
 			vel.y -= 1
 

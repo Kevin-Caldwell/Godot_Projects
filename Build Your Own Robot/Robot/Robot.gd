@@ -22,6 +22,8 @@ var curr_cam = -1
 
 var dir = Vector3()
 var vel = Vector3()
+var prev_vel = Vector3()
+var acceleration = Vector3()
 
 const MAX_SLOPE_ANGLE = 40
 
@@ -145,6 +147,16 @@ func process_movement(delta):
 	vel.x = hvel.x
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+	
+	acceleration = (vel - prev_vel)/delta
+	#print(acceleration.abs())
+	if acceleration.y > 1500:
+		print(acceleration)
+		health -= (acceleration.y - 1500) / 45
+	
+	prev_vel = vel
+		#print(vel.y)
+	
 
 	if movement_player.is_playing():
 		if vel.x == 0:
@@ -154,6 +166,7 @@ func process_movement(delta):
 			movement_player.play("Walk")
 		if vel.x < 0:
 			movement_player.play_backwards("Walk")
+	#print(vel.y)
 
 func _input(event):
 	if event is InputEventMouseMotion and !is_dead:
@@ -182,7 +195,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("cam_switch"):
 		cam_select()
 	
-	$GUI/Health.text = str(health)
+	$GUI/Health.text = str(int(health))
 	if health < 0:
 		$GUI/Health.text = str(0) 
 	$GUI/AmmoProgress.set_value(float(turret.ammo) / float(turret.MAX_AMMO) * 100)
