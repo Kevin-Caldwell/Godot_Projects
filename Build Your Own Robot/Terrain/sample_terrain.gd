@@ -1,6 +1,7 @@
 extends Spatial
 
-const id = "ground"
+var id = "sample terrain"
+
 
 func _ready():
 	pass

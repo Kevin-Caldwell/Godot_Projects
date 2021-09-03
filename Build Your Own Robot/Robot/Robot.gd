@@ -9,12 +9,12 @@ const MAX_HEALTH = 100
 var health = 100
 
 const MAX_SPEED = 7
-const JUMP_SPEED = 9
+const JUMP_SPEED = 18
 const MAX_SPRINT_SPEED = 10
 const ACCEL = 4.5
 const DEACCEL= 8
 const SPRINT_ACCEL = 9
-const GRAVITY = -12.4
+const GRAVITY = -24.4
 
 var is_sprinting = false
 var is_dead = false
@@ -45,10 +45,10 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	turret = turret_scene.instance()
-	add_child(turret)
-	turret.rotate_y(-PI/2)
-	turret.translate(Vector3(0, 1.624, 0))
+	turret = $machine# turret_scene.instance()#$machine
+#	add_child(turret)
+#	turret.rotate_y(-PI/2)
+#	turret.translate(Vector3(0, 1.624, 0))
 	
 	movement = mech_legs_scene.instance()
 	add_child(movement)
@@ -65,7 +65,7 @@ func _ready():
 	$RegenTimer.start()
 	
 	cameras.append($Rotation_Helper/BehindView)
-	cameras.append($RobotView)
+	cameras.append(turret.get_node("Cube/RobotView"))
 	
 	cam_select()
 
@@ -77,8 +77,10 @@ func process_input(delta):
 
 	if Input.is_action_pressed("forward"):
 		input_movement_vector.y += 1
+		movement_player.play("Walk")
 	if Input.is_action_pressed("backward"):
 		input_movement_vector.y -= 1
+		movement_player.play_backwards("Walk")
 	if Input.is_action_pressed("left"):
 		input_movement_vector.x -= 1
 	if Input.is_action_pressed("right"):
@@ -146,27 +148,17 @@ func process_movement(delta):
 	hvel = hvel.linear_interpolate(target, accel * delta)
 	vel.x = hvel.x
 	vel.z = hvel.z
+	vel.y = clamp(vel.y, -100, 60)
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 	
 	acceleration = (vel - prev_vel)/delta
-	#print(acceleration.abs())
-	if acceleration.y > 1500:
-		print(acceleration)
-		health -= (acceleration.y - 1500) / 45
-	
+	if acceleration.y > 1600:
+		health -= (acceleration.y - 1600) / 45
 	prev_vel = vel
-		#print(vel.y)
-	
 
 	if movement_player.is_playing():
-		if vel.x == 0:
+		if abs(vel.x) < 0.1 && abs(vel.z) < 0.1:
 			movement_player.stop()
-	if !movement_player.is_playing():
-		if vel.x > 0:
-			movement_player.play("Walk")
-		if vel.x < 0:
-			movement_player.play_backwards("Walk")
-	#print(vel.y)
 
 func _input(event):
 	if event is InputEventMouseMotion and !is_dead:
@@ -178,6 +170,7 @@ func _input(event):
 			var camera_rot = rotation_helper.rotation_degrees
 			camera_rot.x = clamp(camera_rot.x, -70, 90)
 			rotation_helper.rotation_degrees = camera_rot
+			turret.get_node("Cube").rotation.z = deg2rad(camera_rot.x)
 		#else:
 			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -208,8 +201,6 @@ func _process(delta):
 	else:
 		$GUI/OutOfAmmo.visible = false
 		
-	#print(rotation_helper.rotation.x)
-		
 
 func die():
 	$AnimationPlayer.play("Death")
@@ -231,4 +222,5 @@ func cam_select():
 	camera = cameras[curr_cam]
 	camera.current = true
 	$GUI/Crosshair.visible = !$GUI/Crosshair.visible
-	rotation_helper.rotation.x = -0.228638
+	if curr_cam == 0:
+		rotation_helper.rotation.x = -0.228638

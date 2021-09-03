@@ -27,11 +27,8 @@ func _physics_process(delta):
 		else:
 			roam()
 		
-		var collision = move_and_collide(vel)
+		var collision = move_and_collide(vel.normalized())
 		dirTimer -= delta
-		
-		if get_global_transform().origin.distance_to(target.get_global_transform().origin) < sight:
-				lock = true
 		
 		if get_global_transform().origin.y < -20:
 			kill()
@@ -42,16 +39,17 @@ func _physics_process(delta):
 func roam():
 	if dirTimer <= 0:
 			var angle = rand_range(-PI/2, PI/2)
-			rotate_y(angle)
+			vel = vel.rotated(Vector3(0, 1, 0), angle).normalized() * 0.1
+			vel.y = -10
 			dirTimer = rand_range(5, 15)
-			vel = vel.rotated(Vector3(0, 1, 0), angle)
-			vel.y -= 1
+			if get_global_transform().origin.distance_to(target.get_global_transform().origin) < sight:
+				lock = true
 
 func target():
 	look_at(target.get_global_transform().origin, Vector3(0, 1, 0))
 	rotation.x = 0
 	vel = get_global_transform().origin.direction_to(target.get_global_transform().origin).normalized()
-	vel.y -= 1
+	vel.y = -0.3
 
 func bullet_hit(damage):
 	health -= damage
@@ -69,7 +67,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func attack():
-	if $AttackTimer.is_stopped():
+	if $AttackTimer.is_stopped() and health > 0:
 		get_parent().get_node("Robot").health -= damage
 		$AnimationPlayer.playback_speed=5
 		$AnimationPlayer.play("Attack")

@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Robot/Chasis/Base_Chasis.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://Robot/Jetpack/Jetpack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Robot/Chasis/Chasis.gd" type="Script" id=2]
 
 [node name="Chasis" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Base_Chasis" type="MeshInstance" parent="."]
 mesh = ExtResource( 1 )
 material/0 = null
-
-[node name="Jetpack" parent="." instance=ExtResource( 2 )]

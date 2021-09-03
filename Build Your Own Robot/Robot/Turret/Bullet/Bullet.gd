@@ -4,9 +4,9 @@ const id = "bullet"
 
 var BULLET_SPEED = 150
 var BULLET_DAMAGE = 15
-
-const KILL_TIMER = 1
+var KILL_TIMER = 1
 var timer = 0
+var forward_dir
 
 var hit_something = false
 
@@ -15,7 +15,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	var forward_dir = global_transform.basis.x.normalized()
+	forward_dir = global_transform.basis.x.normalized()
 	global_translate(forward_dir * BULLET_SPEED * delta)
 
 	timer += delta

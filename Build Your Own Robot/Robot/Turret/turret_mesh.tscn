@@ -13,3 +13,7 @@ visible = false
 
 [node name="Cylinder005" parent="." index="5"]
 visible = false
+
+[node name="RobotView" type="Camera" parent="." index="7"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.66375, 6.88427 )
+fov = 30.0
