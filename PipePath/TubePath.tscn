@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Junction.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TubePath.gd" type="Script" id=3]
+[ext_resource path="res://background.png" type="Texture" id=4]
+
+[node name="2D Environment" type="Node2D"]
+script = ExtResource( 3 )
+junctionScene = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 51, 49 )
+z_index = 2
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 738.0
+margin_top = 230.0
+margin_right = 990.0
+margin_bottom = 281.0
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedHSlider" type="HSlider" parent="."]
+margin_left = 771.0
+margin_top = 331.0
+margin_right = 995.0
+margin_bottom = 347.0
+min_value = 40.0
+max_value = 150.0
+value = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 722.0
+margin_top = 331.0
+margin_right = 769.0
+margin_bottom = 345.0
+text = "Speed: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 241, 299 )
+texture = ExtResource( 4 )
+
+[node name="TimerLabel" type="Label" parent="."]
+margin_left = 720.0
+margin_top = 65.0
+margin_right = 864.0
+margin_bottom = 111.0
+rect_scale = Vector2( 2, 2 )
+text = "Click to Start the game"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameEndColorRect" type="ColorRect" parent="."]
+margin_left = 777.0
+margin_top = 394.0
+margin_right = 953.0
+margin_bottom = 469.0
+color = Color( 0, 0.509804, 0.533333, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameEndLabel" type="Label" parent="."]
+light_mask = 3
+margin_left = 782.0
+margin_top = 472.0
+margin_right = 955.0
+margin_bottom = 531.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlayButton" type="Button" parent="."]
+margin_left = 833.0
+margin_top = 542.0
+margin_right = 921.0
+margin_bottom = 579.0
+text = "How to Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Popup" type="AcceptDialog" parent="."]
+margin_left = 194.0
+margin_top = 156.0
+margin_right = 878.0
+margin_bottom = 462.0
+window_title = "How to Play"
+dialog_text = "Objective:
+Connect the pipes such that the character can travel from the start junction to the end junction.
+
+How to play:
+	As soon as the window is clicked, a 5 second timer starts
+	After this timer, the character starts moving
+	The character can only move to a junction which is connected to the junction it is currently on
+	Left-clicking a junction turns it counter-clockwise
+	Right-clicking a junction turns it clockwise
+	If the character moves into a junction, that junction will be locked and will not rotate
+	When the character moves towards a junction, that junction will lock, not allowing the user to rotate
+	If the character reaches the end of the path before reaching the finish junction, the game is won
+	If the character does not reach the end of the path before reaching the finish junction, the game is lost"
+
+[connection signal="reachedJunction" from="Player" to="." method="_on_Player_reachedJunction"]
+[connection signal="button_down" from="StartButton" to="." method="_onStartButtonClicked"]
+[connection signal="value_changed" from="SpeedHSlider" to="." method="_onSpeedHSliderValueChanged"]
+[connection signal="button_up" from="HowToPlayButton" to="." method="_onHowToPlayButtonUp"]

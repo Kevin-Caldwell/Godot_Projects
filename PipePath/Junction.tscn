@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://junction.png" type="Texture" id=1]
+[ext_resource path="res://Junction.gd" type="Script" id=2]
+[ext_resource path="res://EndJunction.png" type="Texture" id=3]
+[ext_resource path="res://junctionConnected.png" type="Texture" id=4]
+[ext_resource path="res://EndJunctionConnected.png" type="Texture" id=5]
+[ext_resource path="res://start Junction.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "end",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "start",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "EndJunctionConnected",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "junctionConnected",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 254.167, 251.667 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 107.5, 49.5833 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 50.1667, 117.083 )
+
+[node name="Junction" type="Area2D"]
+position = Vector2( -1, -1 )
+scale = Vector2( 1.2, 1.2 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 144, -139 )
+frames = SubResource( 2 )
+animation = "EndJunctionConnected"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 22.5, 15.8333 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="WireCollisionShape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 404.167, 4.58333 )
+shape = SubResource( 3 )
+
+[node name="WireCollisionShape2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 8.16667, -377.917 )
+shape = SubResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 107.5
+margin_top = -240.833
+margin_right = 230.5
+margin_bottom = -191.833
+rect_scale = Vector2( 2, 2 )
+text = "pifeiafklemaf"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="input_event" from="." to="." method="_on_Junction_input_event"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
